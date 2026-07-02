@@ -1,0 +1,1160 @@
+/* ====================================
+   ПОДКЛЮЧЕНИЕ ШРИФТОВ
+==================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* ====================================
+   ОСНОВНЫЕ СТИЛИ
+==================================== */
+body {
+    font-family: 'Cormorant Infant', serif;
+    background-color: #F0F8FF;
+    /* Alice Blue - очень светлый небесно-голубой */
+    color: #2c3e50;
+    /* Тёмно-синий */
+    margin: 0;
+    padding: 0;
+}
+
+/* ====================================
+   КЛАССЫ ДЛЯ ШРИФТОВ
+==================================== */
+/* Для заголовков — элегантный шрифт с засечками */
+.font-anime {
+    font-family: 'Bad Script', cursive;
+}
+
+
+
+/* ====================================
+   ЦВЕТА
+==================================== */
+.text-sakura {
+    color: #FFB7C5;
+    /* Розовый как цвет сакуры */
+}
+
+.bg-navy {
+    background-color: #2c3e50;
+    /* Тёмно-синий фон */
+}
+
+.custom-text {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 100px;
+}
+
+/* ====================================
+   ХОЛСТ ДЛЯ ЛЕПЕСТКОВ САКУРЫ
+==================================== */
+#sakura-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    /* Чтобы клики проходили сквозь canvas */
+}
+
+/* ====================================
+   СКРЫТИЕ СКРОЛЛБАРА В ГАЛЕРЕЕ
+==================================== */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Для Chrome, Safari, Edge */
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* Для IE и Edge */
+    scrollbar-width: none;
+    /* Для Firefox */
+}
+
+#countdown {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 24px;
+    color: #f898ab;
+    text-shadow: 0 2px 10px rgba(255, 183, 197, 0.3);
+}
+
+.img-history {
+    width: 40%;
+    /* Ширина 40% */
+    max-width: 500px;
+    /* Не больше 500px */
+    height: 500px;
+    /* Фиксированная высота */
+    object-fit: cover;
+    /* Фото не искажается */
+}
+
+/* ====================================
+   КАРТОЧКА ДРУГА (ЗАМАЗАННЫЕ ОТВЕТЫ)
+==================================== */
+
+.friend-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 32px 28px 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 183, 197, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
+    height: auto;
+}
+
+.card-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #FFB7C5;
+    box-shadow: 0 4px 14px rgba(255, 183, 197, 0.25);
+    flex-shrink: 0;
+}
+
+.card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-name {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #2c3e50;
+    margin: 14px 0 10px;
+    text-align: center;
+}
+
+.card-divider {
+    width: 40px;
+    height: 2px;
+    background: #FFB7C5;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.card-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ===== ОДИН ВОПРОС + ОТВЕТ (на одной строке) ===== */
+/* ===== ОДИН ВОПРОС + ОТВЕТ (на одной строке) ===== */
+.qa-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 183, 197, 0.1);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    min-height: 44px;
+    width: 100%;
+    /* ← Добавил */
+}
+
+.qa-item:hover {
+    background: rgba(255, 183, 197, 0.06);
+}
+
+.qa-item:last-child {
+    border-bottom: none;
+}
+
+/* Вопрос — строго слева */
+.question {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    text-align: left;
+    /* ← Явно выравнивание влево */
+    flex: 1;
+    /* Занимает всё свободное место */
+    pointer-events: none;
+    margin: 0;
+    /* ← Убираем лишние отступы */
+    padding: 0;
+    /* ← Убираем лишние отступы */
+}
+
+/* Ответ — строго справа */
+.answer {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: transparent;
+    background: #FFB7C5;
+    border-radius: 8px;
+    padding: 4px 10px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    /* Не сжимается */
+    text-align: center;
+    display: inline-block;
+    line-height: 1.4;
+    margin: 0;
+    /* ← Убираем лишние отступы */
+}
+
+/* Когда ответ открыт */
+.qa-item.open .answer {
+    color: #2c3e50;
+    background: transparent;
+    letter-spacing: 0.5px;
+}
+
+/* Вопрос — слева */
+.question {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    flex: 1;
+    pointer-events: none;
+}
+
+/* Ответ — справа, замазанный (как в тг) */
+.answer {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: transparent;
+    /* текст не виден */
+    background: #FFB7C5;
+    /* розовая замазка */
+    background-size: 100% 100%;
+    border-radius: 8px;
+    padding: 4px 10px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    min-width: 40px;
+    text-align: center;
+    display: inline-block;
+    line-height: 1.4;
+}
+
+/* ====================================
+   АДАПТИВ
+==================================== */
+@media (max-width: 480px) {
+    .friend-card {
+        padding: 24px 18px 20px;
+        max-width: 100%;
+        min-height: 240px;
+        border-radius: 8px;
+    }
+
+    .card-avatar {
+        width: 64px;
+        height: 64px;
+    }
+
+    .card-name {
+        font-size: 22px;
+    }
+
+    .question {
+        font-size: 14px;
+    }
+
+    .answer {
+        font-size: 14px;
+        padding: 3px 8px;
+    }
+}
+
+/* ====================================
+   СЛАЙДЕР С КАРТОЧКАМИ (одна на экране)
+==================================== */
+
+#slider-container {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    touch-action: pan-y;
+    position: relative;
+    background: white;
+}
+
+.friend-card.hidden {
+    display: none;
+}
+
+#slide-left,
+#slide-right {
+    backdrop-filter: blur(4px);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 30;
+}
+
+#slide-left {
+    left: -100px;
+}
+
+#slide-right {
+    right: -100px;
+}
+
+#slide-left:hover,
+#slide-right:hover {
+    opacity: 0.8;
+    background: white;
+}
+
+#slide-left:active,
+#slide-right:active {
+    opacity: 0.6;
+}
+
+/* ====================================
+   СКРЫВАЕМ СТРЕЛКИ НА ТЕЛЕФОНАХ
+==================================== */
+@media (max-width: 768px) {
+
+    #slide-left,
+    #slide-right {
+        display: none !important;
+    }
+}
+
+/* ====================================
+   СКРОЛЛ С ФОТО (как у карточек друзей)
+==================================== */
+
+#photo-scroller {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    cursor: default;
+}
+
+#photo-scroller:active {
+    cursor: default;
+}
+
+#photo-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+#photo-scroller {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#photo-scroller .snap-center {
+    scroll-snap-align: center;
+}
+
+#photo-scroller img {
+    cursor: default;
+}
+
+/* При наведении на карточку — увеличиваем фото */
+#photo-scroller .group:hover img {
+    transform: scale(1.05);
+}
+
+/* Кнопки навигации */
+#scroll-left-btn,
+#scroll-right-btn {
+    backdrop-filter: blur(4px);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 30;
+}
+
+#scroll-left-btn:hover,
+#scroll-right-btn:hover {
+    opacity: 0.8;
+    background: white;
+}
+
+#scroll-left-btn:active,
+#scroll-right-btn:active {
+    opacity: 0.6;
+}
+
+/* Скрываем стрелки на телефонах */
+@media (max-width: 768px) {
+
+    #scroll-left-btn,
+    #scroll-right-btn {
+        display: none !important;
+    }
+}
+
+/* Адаптив для карточек */
+@media (max-width: 480px) {
+    #photo-scroller .snap-center {
+        width: 85vw;
+    }
+
+    #photo-scroller img {
+        height: 200px;
+    }
+}
+
+
+/* Отодвигаем левую кнопку */
+#scroll-left-btn {
+    left: -100px !important;
+}
+
+/* Отодвигаем правую кнопку */
+#scroll-right-btn {
+    right: -100px !important;
+}
+
+/* На больших экранах отодвигаем ещё дальше */
+@media (min-width: 768px) {
+    #scroll-left-btn {
+        left: -150px !important;
+    }
+
+    #scroll-right-btn {
+        right: -150px !important;
+    }
+}
+
+/* ====================================
+МОДАЛЬНОЕ ОКНО ДЛЯ ФОТО (СДЕРЖАННЫЙ ДИЗАЙН)====================================*/
+.photo-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.photo-modal-content {
+    position: relative;
+    max-width: 92vw;
+    max-height: 92vh;
+    background: transparent;
+}
+
+.photo-modal-content img {
+    max-width: 92vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Крестик */
+.photo-modal-close {
+    position: absolute;
+    top: -44px;
+    right: -4px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    font-family: 'Cormorant Infant', serif;
+}
+
+.photo-modal-close:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+/* Подпись и счётчик */
+.photo-modal-footer {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    padding: 0 16px;
+    pointer-events: none;
+}
+
+.photo-modal-caption {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+.photo-modal-counter {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 13px;
+    font-family: 'Cormorant Infant', serif;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Стрелки — на компьютере */
+.photo-modal-prev,
+.photo-modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 28px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+    font-family: 'Cormorant Infant', serif;
+}
+
+.photo-modal-prev:hover,
+.photo-modal-next:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.photo-modal-prev {
+    left: -56px;
+}
+
+.photo-modal-next {
+    right: -56px;
+}
+
+/* Анимации */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.photo-modal.active .photo-modal-content {
+    animation: modalFadeIn 0.3s ease;
+}
+
+/* ====================================
+   АДАПТИВ — ТЕЛЕФОНЫ
+==================================== */
+@media (max-width: 768px) {
+
+    .photo-modal-prev,
+    .photo-modal-next {
+        display: none !important;
+    }
+
+    .photo-modal-content img {
+        max-width: 94vw;
+        max-height: 74vh;
+        border-radius: 10px;
+    }
+
+    .photo-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .photo-modal-close:hover {
+        background: rgba(0, 0, 0, 0.5);
+        transform: none;
+    }
+
+    .photo-modal-footer {
+        bottom: -60px;
+    }
+
+    .photo-modal-caption {
+        font-size: 14px;
+        max-width: 90vw;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .photo-modal-counter {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-modal-content img {
+        max-height: 68vh;
+    }
+
+    .photo-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .photo-modal-caption {
+        font-size: 13px;
+    }
+}
+
+/* ====================================
+   АНИМАЦИОННЫЙ БЛОК (переименованные классы, без конфликтов)
+==================================== */
+.birthday-animation-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F0F8FF;
+    padding: 40px 0;
+}
+
+.anim-wrap {
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    visibility: hidden;
+    width: 100vw;
+}
+
+.anim-wrap>div {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 20vh;
+}
+
+.anim-one {
+    font-size: 4.5rem;
+}
+
+.anim-two {
+    font-size: 1.2rem;
+    font-weight: lighter;
+}
+
+.anim-three {
+    font-size: 3rem;
+}
+
+.anim-four .anim-text-box {
+    border: 3px solid #aaa;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    width: 600px;
+}
+
+.anim-text-box p {
+    margin: 0;
+    text-align: left;
+}
+
+.anim-text-box span {
+    visibility: hidden;
+}
+
+.anim-text-box .anim-fake-btn {
+    background-color: rgb(21, 161, 237);
+    border-radius: 3px;
+    bottom: -50px;
+    color: #fff;
+    padding: .5rem 1rem;
+    position: absolute;
+    right: 5px;
+}
+
+.anim-five p {
+    font-size: 2rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.anim-idea-3 strong {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 3px 5px;
+}
+
+.anim-five .anim-idea-5 {
+    font-size: 4rem;
+}
+
+.anim-idea-5 span,
+.anim-idea-6 span,
+.anim-wish-hbd span {
+    display: inline-block;
+}
+
+.anim-idea-6 span {
+    font-size: 15rem;
+}
+
+.anim-six {
+    position: relative;
+    top: 10vh;
+    z-index: 1;
+}
+
+.anim-six img {
+    display: inline-block;
+    height: 350px;
+    max-width: 100%;
+}
+
+.anim-six .anim-hat {
+    left: 41.5%;
+    position: absolute;
+    top: -35%;
+    width: 80px;
+}
+
+.anim-baloons img {
+    display: inline-block;
+    position: absolute;
+}
+
+.anim-baloons img:nth-child(even) {
+    left: -10%;
+}
+
+.anim-baloons img:nth-child(odd) {
+    right: -10%;
+}
+
+.anim-baloons img:nth-child(3n + 0) {
+    left: 30%;
+}
+
+.anim-seven,
+.anim-eight {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.anim-eight svg {
+    left: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 25px;
+    z-index: -1;
+}
+
+.anim-eight svg:nth-child(1) {
+    fill: #bd6ecf;
+    left: 5vw;
+    top: 7vh;
+}
+
+.anim-eight svg:nth-child(2) {
+    fill: #7dd175;
+    left: 35vw;
+    top: 23vh;
+}
+
+.anim-eight svg:nth-child(3) {
+    fill: #349d8b;
+    left: 23vw;
+    top: 33vh;
+}
+
+.anim-eight svg:nth-child(4) {
+    fill: #347a9d;
+    left: 57vw;
+    top: 43vh;
+}
+
+.anim-eight svg:nth-child(5) {
+    fill: #c66053;
+    left: 7vw;
+    top: 68vh;
+}
+
+.anim-eight svg:nth-child(6) {
+    fill: #bfaa40;
+    left: 77vw;
+    top: 42vh;
+}
+
+.anim-eight svg:nth-child(7) {
+    fill: #e3bae8;
+    left: 83vw;
+    top: 68vh;
+}
+
+.anim-eight svg:nth-child(8) {
+    fill: #8762cb;
+    left: 37vw;
+    top: 86vh;
+}
+
+.anim-eight svg:nth-child(9) {
+    fill: #9a90da;
+    left: 87vw;
+    top: 94vh;
+}
+
+.anim-wish-hbd {
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.anim-wish-text {
+    font-size: 2rem;
+    font-weight: lighter;
+    margin: 10px 0 0;
+}
+
+.anim-nine p {
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+#replay {
+    cursor: pointer;
+    z-index: 3;
+}
+
+/* Адаптив */
+@media screen and (max-height: 1000px) {
+    .anim-six .anim-hat {
+        left: 40%;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .anim-six .anim-hat {
+        left: 37%;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .anim-six .anim-hat {
+        left: 32%;
+    }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+    .anim-six .anim-hat {
+        left: 32%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .anim-wrap {
+        width: 90%;
+    }
+
+    .anim-four .anim-text-box {
+        width: 90%;
+    }
+
+    .anim-text-box .anim-fake-btn {
+        bottom: -38px;
+        right: 5px;
+    }
+
+    .anim-idea-5 span {
+        display: block;
+    }
+
+    .anim-idea-6 span {
+        font-size: 10rem;
+    }
+
+    .anim-six .anim-hat {
+        width: 50px;
+    }
+
+    .anim-wish-hbd {
+        font-size: 2.2em;
+    }
+
+    .anim-wish-text {
+        font-size: 1.4rem;
+    }
+
+    .anim-nine p {
+        font-size: 1.5rem;
+    }
+}
+
+/* ====================================
+   ПАЗЛ 6×6
+==================================== */
+
+#puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    max-width: 500px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(255, 183, 197, 0.15);
+    padding: 8px;
+}
+
+/* Кусочек пазла */
+.puzzle-piece {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    background-size: 600% 600%;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.puzzle-piece:hover {
+    transform: scale(1.04);
+    z-index: 2;
+    box-shadow: 0 6px 20px rgba(255, 183, 197, 0.25);
+    border-color: #FFB7C5;
+}
+
+.puzzle-piece.empty {
+    background: #f8f8f8 !important;
+    border: 2px dashed #d4d4d4;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+    cursor: default;
+}
+
+.puzzle-piece.empty:hover {
+    transform: none;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+    border-color: #d4d4d4;
+}
+
+/* Эффект "вырезанных" кусочков — реалистичные края */
+.puzzle-piece::before,
+.puzzle-piece::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Верхний левый */
+.puzzle-piece::before {
+    top: -5px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+}
+
+/* Нижний правый */
+.puzzle-piece::after {
+    bottom: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+}
+
+/* Анимация при победе */
+@keyframes winPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#puzzle-grid.win .puzzle-piece {
+    animation: winPulse 0.6s ease 3;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+    #puzzle-grid {
+        gap: 3px;
+        padding: 6px;
+        border-radius: 12px;
+    }
+
+    .puzzle-piece {
+        border-radius: 4px;
+    }
+
+    .puzzle-piece::before,
+    .puzzle-piece::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #puzzle-grid {
+        gap: 2px;
+        padding: 4px;
+        border-radius: 10px;
+    }
+}
+
+
+/* ====================================
+   КРУГИ В АНИМАЦИИ (принудительно)
+==================================== */
+.anim-eight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.anim-eight svg {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    visibility: hidden;
+    z-index: 10;
+}
+
+/* Цвета для каждого круга (как в оригинале) */
+.anim-eight svg:nth-child(1) {
+    fill: #bd6ecf;
+    left: 5%;
+    top: 7%;
+}
+
+.anim-eight svg:nth-child(2) {
+    fill: #7dd175;
+    left: 35%;
+    top: 23%;
+}
+
+.anim-eight svg:nth-child(3) {
+    fill: #349d8b;
+    left: 23%;
+    top: 33%;
+}
+
+.anim-eight svg:nth-child(4) {
+    fill: #347a9d;
+    left: 57%;
+    top: 43%;
+}
+
+.anim-eight svg:nth-child(5) {
+    fill: #c66053;
+    left: 7%;
+    top: 68%;
+}
+
+.anim-eight svg:nth-child(6) {
+    fill: #bfaa40;
+    left: 77%;
+    top: 42%;
+}
+
+.anim-eight svg:nth-child(7) {
+    fill: #e3bae8;
+    left: 83%;
+    top: 68%;
+}
+
+.anim-eight svg:nth-child(8) {
+    fill: #8762cb;
+    left: 37%;
+    top: 86%;
+}
+
+.anim-eight svg:nth-child(9) {
+    fill: #9a90da;
+    left: 87%;
+    top: 94%;
+}
+
+/* На телефонах круги чуть меньше */
+@media (max-width: 640px) {
+    .anim-eight svg {
+        width: 20px;
+        height: 20px;
+    }
+}
